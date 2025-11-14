@@ -1,1 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>ImporaX – Smart Home & Lifestyle Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #fdf5ff;
+      --card-bg: #ffffff;
+      --card-soft: #fff7e6;
+      --primary: #ffb400;
+      --primary-soft: #ffedd5;
+      --accent: #6366f1;
+      --accent-soft: #e0e7ff;
+      --text-main: #111827;
+      --text-soft: #6b7280;
+      --nav-bg: rgba(255, 255, 255, 0.9);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #020617;
+      --card-bg: #0f172a;
+      --card-soft: #1f2937;
+      --primary: #facc15;
+      --primary-soft: #4b5563;
+      --accent: #6366f1;
+      --accent-soft: #1e293b;
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --nav-bg: rgba(15, 23, 42, 0.95);
+      --shadow-soft: 0 20px 55px rgba(0, 0, 0, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, #eef2ff 0, transparent 45%),
+        radial-gradient(circle at 100% 0%, #fef3c7 0, transparent 40%),
+        radial-gradient(circle at 0% 100%, #fce7f3 0, transparent 40%),
+        var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    [data-theme="dark"] body {
+      background:
+        radial-gradient(circle at 0% 0%, #1f2937 0, transparent 45%),
+        radial-gradient(circle at 100% 0%, #111827 0, transparent 40%),
+        radial-gradient(circle at 0% 100%, #020617 0, transparent 40%),
+        var(--bg);
+    }
+
+    .page {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--nav-bg);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(18px);
+      margin-bottom: 26px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f97316, #facc15, #f472b6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      margin-left: 30px;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+
+    .nav-link {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 18px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-soft);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #fbbf24, #f97316);
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(248, 181, 0, 0.5);
+    }
+
+    .btn-theme {
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(248, 250, 252, 0.9);
+      color: var(--text-soft);
+    }
+
+    [data-theme="dark"] .btn-theme {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(148, 163, 184, 0.08);
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* LAYOUT */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .hero-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      padding: 32px 30px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.25;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-text {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    .search-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f9fafb;
+      border-radius: 999px;
+      padding: 4px;
+      margin-bottom: 18px;
+    }
+
+    [data-theme="dark"] .search-row {
+      background: #020617;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-soft);
+    }
+
+    .hero-meta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 11px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-soft);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .meta-pill span {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .hero-illu-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      padding: 26px 20px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+    }
+
+    .hero-rider {
+      position: absolute;
+      right: 12px;
+      bottom: 0;
+      width: 210px;
+      max-width: 45%;
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 18px;
+      padding: 10px 14px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.16);
+    }
+
+    [data-theme="dark"] .hero-badge {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-soft);
+    }
+
+    .badge-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f97316, #facc15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .badge-name {
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .badge-text {
+      font-size: 10px;
+      color: var(--text-soft);
+    }
+
+    .rating-chip {
+      position: absolute;
+      left: 18px;
+      bottom: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 10px 12px;
+      border-radius: 18px;
+      font-size: 11px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.16);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    [data-theme="dark"] .rating-chip {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    /* SECTIONS */
+    .section-header {
+      text-align: center;
+      margin: 26px 0 18px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    /* PRODUCT GRID */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 992px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-rider {
+        position: static;
+        width: 80%;
+        max-width: 260px;
+        margin: 30px auto 0;
+        display: block;
+      }
+      .hero-badge,
+      .rating-chip {
+        display: none;
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navbar {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero-card {
+        padding: 24px 20px;
+      }
+      .hero-title {
+        font-size: 24px;
+      }
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 16px 14px 14px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
+    }
+
+    .product-img-wrap {
+      height: 110px;
+      border-radius: 18px;
+      background: var(--card-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .product-img-wrap img {
+      width: 70%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .product-cat {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .product-price {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .product-cta {
+      font-size: 11px;
+      padding: 6px 10px;
+    }
+
+    .tag-chip {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 10px;
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] .tag-chip {
+      background: #4b5563;
+      color: #fecaca;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 34px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--text-soft);
+    }
+
+    footer span {
+      font-weight: 600;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="nav-left">
+        <div class="logo-circle">I</div>
+        <div class="brand-name">ImporaX<span>BD</span></div>
+        <nav class="nav-links">
+          <span class="nav-link active" onclick="scrollToId('hero')">Home</span>
+          <span class="nav-link" onclick="scrollToId('products')">Products</span>
+          <span class="nav-link" onclick="scrollToId('about')">About</span>
+          <span class="nav-link" onclick="scrollToId('contact')">Contact</span>
+        </nav>
+      </div>
+      <div class="nav-right">
+        <button class="btn btn-theme" id="themeToggle">🌙 Dark</button>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <main id="hero" class="hero-layout">
+      <section class="hero-card">
+        <div class="hero-kicker">
+          ⚡ Smart products, delivered across Bangladesh
+        </div>
+        <h1 class="hero-title">
+          Upgrade your home with <span>premium gadgets</span> from ImporaX.
+        </h1>
+        <p class="hero-text">
+          From creative kitchen tools to aesthetic lamps and clocks – ImporaX brings
+          you high-quality products sourced directly from trusted suppliers.
+        </p>
+
+        <form class="search-row" onsubmit="return false;">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search product or category – e.g. Kitchen, Lamp, Clock"
+          />
+          <button class="btn btn-primary" type="submit">Search now</button>
+        </form>
+
+        <div class="hero-meta-row">
+          <div class="meta-pill">
+            🚚 Delivery fee from <span>৳ 79</span>
+          </div>
+          <div class="meta-pill">
+            🛒 Cash on delivery in most areas
+          </div>
+          <div class="meta-pill">
+            ⭐ Curated by <span>ImporaX</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="hero-illu-card">
+        <div class="hero-badge">
+          <div class="badge-avatar">IX</div>
+          <div>
+            <div class="badge-name">ImporaX Customer</div>
+            <div class="badge-text">“Unique products & fast response.”</div>
+          </div>
+        </div>
+
+        <div class="rating-chip">
+          ⭐ 4.9/5 · 1,000+ happy buyers
+        </div>
+
+        <!-- Replace with your own hero image URL if you want -->
+        <img
+          class="hero-rider"
+          src="https://images.pexels.com/photos/4393424/pexels-photo-4393424.png?auto=compress&cs=tinysrgb&w=800"
+          alt="Delivery Rider Illustration"
+        />
+      </aside>
+    </main>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products">
+      <div class="section-header">
+        <h2 class="section-title">Featured Products by ImporaX</h2>
+        <p class="section-subtitle">
+          Kitchen tools, home decor and gadgets – all prices shown in BDT (৳). Update the prices to match your real selling price.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <!-- PRODUCT: Creative Egg Opener -->
+        <article class="product-card">
+          <div class="tag-chip">Kitchen</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Egg+Opener"
+              alt="Creative Egg Opener"
+            />
+          </div>
+          <div class="product-name">Creative Egg Opener</div>
+          <div class="product-cat">Kitchen · Handy breakfast tool</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 299</div>
+            <a
+              href="https://yourstore.com/creative-egg-opener"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: Fruit Peeling Machine -->
+        <article class="product-card">
+          <div class="tag-chip">Kitchen</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Fruit+Peeler"
+              alt="Fruit Peeling Machine"
+            />
+          </div>
+          <div class="product-name">Fruit Peeling Machine</div>
+          <div class="product-cat">Kitchen · Automatic fruit peeler</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 549</div>
+            <a
+              href="https://yourstore.com/fruit-peeling-machine"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: Soap Holder -->
+        <article class="product-card">
+          <div class="tag-chip">Bathroom</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Soap+Holder"
+              alt="Soap Holder"
+            />
+          </div>
+          <div class="product-name">Anti-Slip Soap Holder</div>
+          <div class="product-cat">Kitchen/Bathroom · Water-drain design</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 249</div>
+            <a
+              href="https://yourstore.com/soap-holder"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: MultiFunctional Vegetable Cutter -->
+        <article class="product-card">
+          <div class="tag-chip">Trending</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Veg+Cutter"
+              alt="Multifunction Vegetable Cutter"
+            />
+          </div>
+          <div class="product-name">Multifunction Vegetable Cutter</div>
+          <div class="product-cat">Kitchen · Slicer & chopper</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 999</div>
+            <a
+              href="https://yourstore.com/vegetable-cutter"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: Borosilicate Glass Coffee Maker -->
+        <article class="product-card">
+          <div class="tag-chip">Coffee</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Coffee+Maker"
+              alt="Borosilicate Glass Coffee Maker"
+            />
+          </div>
+          <div class="product-name">Borosilicate Glass Coffee Maker</div>
+          <div class="product-cat">Kitchen · Heat resistant glass</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 1,499</div>
+            <a
+              href="https://yourstore.com/glass-coffee-maker"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: Kitchen Organizer -->
+        <article class="product-card">
+          <div class="tag-chip">Organizer</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Organizer"
+              alt="Kitchen Organizer"
+            />
+          </div>
+          <div class="product-name">Multi-Layer Kitchen Organizer</div>
+          <div class="product-cat">Kitchen · Spice & utensil rack</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 899</div>
+            <a
+              href="https://yourstore.com/kitchen-organizer"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: Aurora Treasure Box Speaker Lamp -->
+        <article class="product-card">
+          <div class="tag-chip">Home Decor</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Aurora+Box"
+              alt="Aurora Treasure Box Speaker Lamp"
+            />
+          </div>
+          <div class="product-name">Aurora Treasure Box Speaker Lamp</div>
+          <div class="product-cat">Decor · Speaker + ambient lamp</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 2,199</div>
+            <a
+              href="https://yourstore.com/aurora-treasure-box"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: Keylight MINI -->
+        <article class="product-card">
+          <div class="tag-chip">Mini Lamp</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Keylight+Mini"
+              alt="Keylight MINI"
+            />
+          </div>
+          <div class="product-name">Keylight MINI</div>
+          <div class="product-cat">Home Decor · Compact night light</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 799</div>
+            <a
+              href="https://yourstore.com/keylight-mini"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: Wall Mounted Clock -->
+        <article class="product-card">
+          <div class="tag-chip">Clock</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Wall+Clock"
+              alt="Wall Mounted Clock"
+            />
+          </div>
+          <div class="product-name">Minimal Wall Mounted Clock</div>
+          <div class="product-cat">Home Decor · Silent movement</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 699</div>
+            <a
+              href="https://yourstore.com/wall-mounted-clock"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCT: Shoulder Bag -->
+        <article class="product-card">
+          <div class="tag-chip">Mens</div>
+          <div class="product-img-wrap">
+            <img
+              src="https://via.placeholder.com/200x150?text=Shoulder+Bag"
+              alt="Mens Shoulder Bag"
+            />
+          </div>
+          <div class="product-name">Mens Cross-body Shoulder Bag</div>
+          <div class="product-cat">Mens · Everyday carry</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 1,399</div>
+            <a
+              href="https://yourstore.com/mens-shoulder-bag"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <div class="section-header">
+        <h2 class="section-title">About ImporaX</h2>
+        <p class="section-subtitle">
+          A Bangladeshi brand focused on unique, high-quality products for your home and lifestyle.
+        </p>
+      </div>
+      <p style="max-width: 720px; margin: 0 auto; font-size: 13px; text-align: center; color: var(--text-soft);">
+        ImporaX carefully researches and imports creative products from trusted suppliers.
+        Our goal is simple: bring you smart tools and aesthetic decor at fair prices in BDT.
+        Whether you are upgrading your kitchen or styling your room, we ensure each item adds real value.
+      </p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <div class="section-header">
+        <h2 class="section-title">Contact & Wholesale</h2>
+        <p class="section-subtitle">
+          Want to order in bulk or have questions about any ImporaX product? Just message us.
+        </p>
+      </div>
+      <p style="max-width: 720px; margin: 0 auto 16px; font-size: 13px; text-align: center; color: var(--text-soft);">
+        Email:
+        <a href="mailto:query@imporax.com">query@imporax.com </a> ·
+        WhatsApp:
+        <a href="https://wa.me/8801777239671" target="_blank" rel="noopener noreferrer">
+      +8801777239671
+        </a>
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      &copy; <span id="year"></span> <span>ImporaX</span>. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Scroll helper for nav
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        window.scrollTo({
+          top: el.offsetTop - 80,
+          behavior: "smooth"
+        });
+      }
+    }
+
+    // Theme toggle + year
+    (function () {
+      const htmlEl = document.documentElement;
+      const btn = document.getElementById("themeToggle");
+
+      function applyTheme(theme) {
+        htmlEl.setAttribute("data-theme", theme);
+        localStorage.setItem("site-theme", theme);
+        btn.textContent = theme === "dark" ? "☀️ Light" : "🌙 Dark";
+      }
+
+      const saved = localStorage.getItem("site-theme") || "light";
+      applyTheme(saved);
+
+      btn.addEventListener("click", () => {
+        const current = htmlEl.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        applyTheme(current === "light" ? "dark" : "light");
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
+<!-- PRODUCT: Creative Egg Opener -->
+<article class="product-card">
+  <div class="tag-chip">Kitchen</div>
+  <div class="product-img-wrap">
+    <img
+      src="https://qr.1688.com/s/Jl9Y4yCt"
+      alt="Creative Egg Opener"
+    />
+  </div>
+  <div class="product-name">Creative Egg Opener</div>
+  <div class="product-cat">Kitchen · Handy breakfast tool</div>
+  <div class="product-bottom">
+    <div class="product-price">৳ 29</div>
+    <a
+      href="https://qr.1688.com/s/Jl9Y4yCt"
+      class="btn btn-primary product-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Buy now
+    </a>
+  </div>
+</article>
+<!-- PRODUCT: Fruit Peelin Machine -->
+<article class="product-card">
+  <div class="tag-chip">Kitchen</div>
+  <div class="product-img-wrap">
+    <img
+      src="https://qr.1688.com/s/1Tx51uAC"
+      alt="Fruit Peelin Machine"
+    />
+  </div>
+  <div class="product-name">Creative Fruit Peeling Machine</div>
+  <div class="product-cat">Kitchen · Handy Tool</div>
+  <div class="product-bottom">
+    <div class="product-price">৳ 60</div>
+    <a
+      href="https://qr.1688.com/s/1Tx51uAC"
+      class="btn btn-primary product-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Buy now
+    </a>
+  </div>
+</article>
+<!-- PRODUCT: Aurora Treasure Box -->
+<article class="product-card">
+  <div class="tag-chip">Gadget</div>
+  <div class="product-img-wrap">
+    <img
+      src="https://qr.1688.com/s/GFIBfOVp"
+      alt="Aurora Treasure Box"
+    />
+  </div>
+  <div class="product-name">Music</div>
+  <div class="product-cat">Gadget · Handy Speaker</div>
+  <div class="product-bottom">
+    <div class="product-price">৳ 1500</div>
+    <a
+      href="https://qr.1688.com/s/GFIBfOVp"
+      class="btn btn-primary product-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Buy now
+    </a>
+  </div>
+</article>
+<!-- PRODUCT: Keylight Mini -->
+<article class="product-card">
+  <div class="tag-chip">Gadget</div>
+  <div class="product-img-wrap">
+    <img
+      src="https://qr.1688.com/s/MeA8ncea"
+      alt="Keylight Mini"
+    />
+  </div>
+  <div class="product-name">Creative Table Lamp</div>
+  <div class="product-cat">Kitchen · Handy gadget tool</div>
+  <div class="product-bottom">
+    <div class="product-price">৳ 1000</div>
+    <a
+      href="https://qr.1688.com/s/MeA8ncea"
+      class="btn btn-primary product-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Buy now
+    </a>
+  </div>
+</article>
+<!-- PRODUCT: Mens Bag -->
+<article class="product-card">
+  <div class="tag-chip">Mens Shoulder Bag</div>
+  <div class="product-img-wrap">
+    <img
+      src="https://qr.1688.com/s/70kewCcO"
+      alt="Keylight Mini"
+    />
+  </div>
+  <div class="product-name">Mens Bagpack</div>
+  <div class="product-cat">Mens Fashio · Multipurpose Travel Bag</div>
+  <div class="product-bottom">
+    <div class="product-price">৳ 3500</div>
+    <a
+      href="https://qr.1688.com/s/70kewCcO"
+      class="btn btn-primary product-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Buy now
+    </a>
+  </div>
+</article>
