@@ -30,7 +30,7 @@
       --radius-lg: 22px;
     }
 
-    [data-theme="dark"] {
+    html[data-theme="dark"] {
       --bg: #020617;
       --card-bg: #0f172a;
       --card-soft: #1f2937;
@@ -59,9 +59,10 @@
         var(--bg);
       color: var(--text-main);
       min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
-    [data-theme="dark"] body {
+    html[data-theme="dark"] body {
       background:
         radial-gradient(circle at 0% 0%, #1f2937 0, transparent 45%),
         radial-gradient(circle at 100% 0%, #111827 0, transparent 40%),
@@ -180,7 +181,7 @@
       color: var(--text-soft);
     }
 
-    [data-theme="dark"] .btn-theme {
+    html[data-theme="dark"] .btn-theme {
       background: rgba(15, 23, 42, 0.95);
     }
 
@@ -195,12 +196,12 @@
       transform: none;
     }
 
-    /* LAYOUT */
+    /* HERO LAYOUT */
     .hero-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 24px;
-      align-items: center;
+      align-items: stretch;
       margin-bottom: 32px;
     }
 
@@ -253,7 +254,7 @@
       margin-bottom: 18px;
     }
 
-    [data-theme="dark"] .search-row {
+    html[data-theme="dark"] .search-row {
       background: #020617;
     }
 
@@ -301,22 +302,23 @@
       position: relative;
       overflow: hidden;
       min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
     }
 
     .hero-rider {
-  position: absolute;
-  right: 12px;
-  bottom: 0;
-  width: 100%;
-  max-width: 420px;
-  border-radius: 24px;
-  object-fit: cover;
-}
+      width: 100%;
+      max-width: 420px;
+      border-radius: 24px;
+      object-fit: cover;
+      display: block;
+    }
 
     .hero-badge {
-      position: absolute;
-      right: 18px;
-      top: 18px;
+      align-self: flex-end;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 18px;
       padding: 10px 14px;
@@ -327,7 +329,7 @@
       box-shadow: 0 14px 35px rgba(15, 23, 42, 0.16);
     }
 
-    [data-theme="dark"] .hero-badge {
+    html[data-theme="dark"] .hero-badge {
       background: rgba(15, 23, 42, 0.95);
       color: var(--text-soft);
     }
@@ -356,9 +358,7 @@
     }
 
     .rating-chip {
-      position: absolute;
-      left: 18px;
-      bottom: 20px;
+      align-self: flex-start;
       background: rgba(255, 255, 255, 0.95);
       padding: 10px 12px;
       border-radius: 18px;
@@ -369,7 +369,7 @@
       gap: 6px;
     }
 
-    [data-theme="dark"] .rating-chip {
+    html[data-theme="dark"] .rating-chip {
       background: rgba(15, 23, 42, 0.95);
     }
 
@@ -391,91 +391,11 @@
     }
 
     /* PRODUCT GRID */
- /* PRODUCT GRID */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 24px;
-  align-items: stretch;
-}
-
-/* make the card not too skinny on big screens */
-.product-card {
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  padding: 16px 14px 14px;
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  max-width: 280px;
-  margin-inline: auto;
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
-}
-
-/* IMAGE AREA */
-.product-img-wrap {
-  height: 140px;
-  border-radius: 18px;
-  background: var(--card-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-
-.product-img-wrap img {
-  width: 80%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* OPTIONAL: you can delete the old media queries for .product-grid */
-
-
-    @media (max-width: 992px) {
-      .hero-layout {
-        grid-template-columns: 1fr;
-      }
-      .hero-rider {
-        position: static;
-        width: 80%;
-        max-width: 260px;
-        margin: 30px auto 0;
-        display: block;
-      }
-      .hero-badge,
-      .rating-chip {
-        display: none;
-      }
-      .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      .navbar {
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .nav-links {
-        display: none;
-      }
-      .hero-card {
-        padding: 24px 20px;
-      }
-      .hero-title {
-        font-size: 24px;
-      }
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+      align-items: stretch;
     }
 
     .product-card {
@@ -487,6 +407,8 @@
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
+      max-width: 280px;
+      margin-inline: auto;
     }
 
     .product-card:hover {
@@ -495,7 +417,7 @@
     }
 
     .product-img-wrap {
-      height: 110px;
+      height: 140px;
       border-radius: 18px;
       background: var(--card-soft);
       display: flex;
@@ -506,9 +428,14 @@
     }
 
     .product-img-wrap img {
-      width: 70%;
+      width: 80%;
       height: auto;
       object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.05);
     }
 
     .product-name {
@@ -552,7 +479,7 @@
       font-weight: 600;
     }
 
-    [data-theme="dark"] .tag-chip {
+    html[data-theme="dark"] .tag-chip {
       background: #4b5563;
       color: #fecaca;
     }
@@ -568,6 +495,32 @@
     footer span {
       font-weight: 600;
       color: var(--accent);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-illu-card {
+        order: -1;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navbar {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .hero-card {
+        padding: 24px 20px;
+      }
+      .hero-title {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -635,16 +588,15 @@
           </div>
         </div>
 
+        <img
+          class="hero-rider"
+          src="delivery-rider.jpeg"
+          alt="Delivery Rider Illustration"
+        />
+
         <div class="rating-chip">
           ⭐ 4.9/5 · 1,000+ happy buyers
         </div>
-
-        <!-- Replace with your own hero image URL if you want -->
-        <img
-         class="hero-rider"
-          src="delivery-rider.jpg"
-          alt="Delivery Rider Illustration"
-        />
       </aside>
     </main>
 
@@ -653,249 +605,79 @@
       <div class="section-header">
         <h2 class="section-title">Featured Products by ImporaX</h2>
         <p class="section-subtitle">
-          Kitchen tools, home decor and gadgets – all prices shown in BDT (৳). Update the prices to match your real selling price.
+          Kitchen tools, home decor and gadgets – all prices shown in BDT (৳).
         </p>
       </div>
 
       <div class="product-grid">
-        <div class="product-grid">
-  <!-- 1. Egg Opener -->
-  <article class="product-card">
-    <div class="tag-chip">Kitchen</div>
-    <div class="product-img-wrap">
-      <img
-        src="egg-opener.jpg"
-        alt="Creative Egg Opener"
-      />
-    </div>
-    <div class="product-name">Creative Egg Opener</div>
-    <div class="product-cat">Kitchen · Handy breakfast tool</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 20</div>
-      <a
-        href="https://qr.1688.com/s/EIBVLAHi"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
+        <!-- 1. Egg Opener -->
+        <article class="product-card">
+          <div class="tag-chip">Kitchen</div>
+          <div class="product-img-wrap">
+            <img src="egg-opener.jpg" alt="Creative Egg Opener" />
+          </div>
+          <div class="product-name">Creative Egg Opener</div>
+          <div class="product-cat">Kitchen · Handy breakfast tool</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 20</div>
+            <a
+              href="https://qr.1688.com/s/EIBVLAHi"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
 
-  <!-- 2. Fruit Peeling Machine -->
-  <article class="product-card">
-    <div class="tag-chip">Kitchen</div>
-    <div class="product-img-wrap">
-      <img
-        src="fruit-peeler.jpg"
-        alt="Fruit Peeling Machine"
-      />
-    </div>
-    <div class="product-name">Fruit Peeling Machine</div>
-    <div class="product-cat">Kitchen · Automatic fruit peeler</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 70</div>
-      <a
-        href="https://qr.1688.com/s/dzFMdegO"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
+        <!-- 2. Fruit Peeling Machine -->
+        <article class="product-card">
+          <div class="tag-chip">Kitchen</div>
+          <div class="product-img-wrap">
+            <img src="fruit-peeler.jpg" alt="Fruit Peeling Machine" />
+          </div>
+          <div class="product-name">Fruit Peeling Machine</div>
+          <div class="product-cat">Kitchen · Automatic fruit peeler</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 70</div>
+            <a
+              href="https://qr.1688.com/s/dzFMdegO"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
 
-  <!-- 3. Soap Holder -->
-  <article class="product-card">
-    <div class="tag-chip">Bathroom</div>
-    <div class="product-img-wrap">
-      <img
-        src="soap-holder.jpg"
-        alt="Soap Holder"
-      />
-    </div>
-    <div class="product-name">Anti-Slip Soap Holder</div>
-    <div class="product-cat">Bathroom · Water-drain design</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 10</div>
-      <a
-        href="https://qr.1688.com/s/1le4P3hH"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
+        <!-- 3. Soap Holder -->
+        <article class="product-card">
+          <div class="tag-chip">Bathroom</div>
+          <div class="product-img-wrap">
+            <img src="soap-holder.jpg" alt="Soap Holder" />
+          </div>
+          <div class="product-name">Anti-Slip Soap Holder</div>
+          <div class="product-cat">Bathroom · Water-drain design</div>
+          <div class="product-bottom">
+            <div class="product-price">৳ 10</div>
+            <a
+              href="https://qr.1688.com/s/1le4P3hH"
+              class="btn btn-primary product-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy now
+            </a>
+          </div>
+        </article>
 
-  <!-- 4. Vegetable Cutter (Blue) -->
-  <article class="product-card">
-    <div class="tag-chip">Trending</div>
-    <div class="product-img-wrap">
-      <img
-        src="veg-cutter.jpg"
-        alt="Multifunction Vegetable Cutter"
-      />
-    </div>
-    <div class="product-name">Multifunction Vegetable Cutter</div>
-    <div class="product-cat">Kitchen · Slicer & chopper</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 300</div>
-      <a
-        href="https://qr.1688.com/s/AzzUJa3h"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
-
-  <!-- 5. French Press Coffee Maker -->
-  <article class="product-card">
-    <div class="tag-chip">Coffee</div>
-    <div class="product-img-wrap">
-      <img
-        src="coffee-maker.jpg"
-        alt="French Press Coffee Maker"
-      />
-    </div>
-    <div class="product-name">French Press Coffee Maker</div>
-    <div class="product-cat">Kitchen · Borosilicate glass</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 1500</div>
-      <a
-        href="https://qr.1688.com/s/SoOs4BtI"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
-
-  <!-- 6. Kitchen Organizer Set -->
-  <article class="product-card">
-    <div class="tag-chip">Organizer</div>
-    <div class="product-img-wrap">
-      <img
-        src="kitchen-organizer.jpg"
-        alt="Kitchen Organizer Set"
-      />
-    </div>
-    <div class="product-name">Kitchen Organizer Set</div>
-    <div class="product-cat">Kitchen · Knife & board holder</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 1700</div>
-      <a
-        href="https://qr.1688.com/s/A2k0MaC3"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
-
-  <!-- 7. Whale Speaker Lamp -->
-  <article class="product-card">
-    <div class="tag-chip">Home Decor</div>
-    <div class="product-img-wrap">
-      <img
-        src="whale-speaker-lamp.jpg"
-        alt="Whale Speaker Lamp"
-      />
-    </div>
-    <div class="product-name">Whale Speaker Lamp</div>
-    <div class="product-cat">Decor · Bluetooth speaker + lamp</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 2500</div>
-      <a
-        href="https://qr.1688.com/s/GFIBfOVp"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
-
-  <!-- 8. Small Square LED Lamp -->
-  <article class="product-card">
-    <div class="tag-chip">Mini Lamp</div>
-    <div class="product-img-wrap">
-      <img
-        src="mini-led-lamp.jpg"
-        alt="Small Square LED Lamp"
-      />
-    </div>
-    <div class="product-name">Small Square LED Lamp</div>
-    <div class="product-cat">Home · Compact bedside light</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 500</div>
-      <a
-        href="https://qr.1688.com/s/MeA8ncea"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
-
-  <!-- 9. Canvas Travel Backpack -->
-  <article class="product-card">
-    <div class="tag-chip">Backpack</div>
-    <div class="product-img-wrap">
-      <img
-        src="canvas-backpack.jpg"
-        alt="Canvas Travel Backpack"
-      />
-    </div>
-    <div class="product-name">Canvas Travel Backpack</div>
-    <div class="product-cat">Travel · 45cm x 32cm x 15cm</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 3500</div>
-      <a
-        href="https://qr.1688.com/s/70kewCcO"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
-
-  <!-- 10. Glow Wall Clock -->
-  <article class="product-card">
-    <div class="tag-chip">Clock</div>
-    <div class="product-img-wrap">
-      <img
-        src="glow-wall-clock.jpg"
-        alt="Glow Wall Clock"
-      />
-    </div>
-    <div class="product-name">Glow Wall Clock</div>
-    <div class="product-cat">Home Decor · Day & night glow</div>
-    <div class="product-bottom">
-      <div class="product-price">৳ 299</div>
-      <a
-        href="https://qr.1688.com/s/CiisPILb"
-        class="btn btn-primary product-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Buy now
-      </a>
-    </div>
-  </article>
-</div>
+        <!-- 4. Vegetable Cutter (Blue) -->
+        <article class="product-card">
+          <div class="tag-chip">Trending</div>
+          <div class="product-img-wrap">
+            <img src="veg-cutter.jpg" alt="Multifunction Vegetable Cutter" />
+          </div>
+          <div class="product-name">Multifunction Vegetable Cutter</div>
+          <div class="product-cat">Kitchen · Slicer
